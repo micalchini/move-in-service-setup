@@ -50,6 +50,10 @@
   width: auto;
   padding: 0.5rem;
 }
+.react-app-container .slds-progress__marker .slds-assistive-text. {
+  width: 1px !important;
+  height: 1px !important;
+}
 .react-app-container .slds-assistive-text {
   position: unset !important;
   margin: 0 !important;
