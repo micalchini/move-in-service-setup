@@ -9,13 +9,22 @@ const ServiceSetupForm = ({ onSubmit, initialData, isLoading }) => {
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (section, field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [section]: {
-        ...prev[section],
+    if (section === '') {
+      // Handle root level fields like currentAddress, newAddress, moveDate
+      setFormData(prev => ({
+        ...prev,
         [field]: value
-      }
-    }));
+      }));
+    } else {
+      // Handle nested fields like customerInfo.firstName
+      setFormData(prev => ({
+        ...prev,
+        [section]: {
+          ...prev[section],
+          [field]: value
+        }
+      }));
+    }
     
     // Clear error when user starts typing
     if (errors[`${section}.${field}`] || errors[field]) {
